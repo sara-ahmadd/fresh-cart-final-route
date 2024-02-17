@@ -1,1 +1,28 @@
-<p>details works!</p>
+<div class="container">
+  <div class="row px-2 align-items-center" *ngIf="productDetails; else loader">
+    <div class="col-md-4">
+      <img [src]="productDetails.imageCover" class="w-100" />
+    </div>
+    <div class="col-md-8">
+      <p class="fs-3">{{ productDetails.title }}</p>
+      <p class="fs-5 text-muted">{{ productDetails.description }}</p>
+      <p class="fs-6 text-main">{{ productDetails.category.name }}</p>
+      <div class="d-flex align-items-center justify-content-between">
+        <p>{{ productDetails.price }}EGP</p>
+        <div class="d-flex align-items-baseline justify-content-center">
+          <p>{{ productDetails.ratingsAverage }}</p>
+
+          <i class="fa-solid fa-star text-rating-color"></i>
+        </div>
+      </div>
+      <app-add-to-cart-btn
+        [productId]="productDetails._id"
+      ></app-add-to-cart-btn>
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <div class="d-flex justify-content-center align-items-center h-100 w-100">
+    <i class="fa fa-spinner fa-spin text-main fs-1"></i>
+  </div>
+</ng-template>

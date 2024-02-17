@@ -6,9 +6,7 @@
   <div class="alert alert-danger" *ngIf="registerError.length > 0">
     {{ registerError }}
   </div>
-  <div class="alert alert-success" *ngIf="registerSuccess.length > 0">
-    {{ registerSuccess }}
-  </div>
+
   <h1 class="h3">Register Now:</h1>
   <div class="form-group mb-3">
     <label for="name" class="pb-2">Name</label>
@@ -107,8 +105,8 @@
     <div
       class="alert alert-danger"
       *ngIf="
-        registerForm.get('rePassword')?.errors &&
-        registerForm.get('rePassword')?.touched
+        (registerForm.get('rePassword')?.errors &&
+        registerForm.get('rePassword')?.touched) || registerForm.errors?.['Passwords mismatch']
       "
     >
       <p *ngIf="registerForm.get('rePassword')?.getError('required')">
@@ -116,6 +114,9 @@
       </p>
       <p *ngIf="registerForm.get('rePassword')?.getError('pattern')">
         rePassword is not valid
+      </p>
+      <p *ngIf=" registerForm.errors?.['Passwords mismatch']">
+        Passwords mismatch
       </p>
     </div>
   </div>
@@ -138,16 +139,9 @@
   </div>
   <button
     class="btn bg-main text-white d-block ms-auto"
-    [disabled]="registerForm.invalid"
-    *ngIf="!isLoading"
-  >
-    Register
-  </button>
-  <button
-    class="btn bg-main text-white d-block ms-auto"
     [disabled]="registerForm.invalid || isLoading"
-    *ngIf="isLoading"
   >
-    <i class="fa fa-spinner fa-spin"></i>
+    <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+    <span *ngIf="!isLoading">Register</span>
   </button>
 </form>

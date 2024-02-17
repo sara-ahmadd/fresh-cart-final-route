@@ -7,16 +7,49 @@ import { CartComponent } from './pages/cart/cart.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { BrandsComponent } from './pages/brands/brands.component';
+import { authGuard } from 'src/auth.guard';
+import { ProductsPageComponent } from './pages/products-page/products-page.component';
+import { DetailsComponent } from './pages/details/details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, title: 'home' },
+  {
+    path: 'home',
+    canActivate: [authGuard],
+    component: HomeComponent,
+    title: 'home',
+  },
   { path: 'login', component: LoginComponent, title: 'login' },
-  { path: 'products', component: HomeComponent, title: 'products' },
+  {
+    path: 'products',
+    canActivate: [authGuard],
+    component: ProductsPageComponent,
+    title: 'products',
+  },
+  {
+    path: 'productDetails/:id',
+    component: DetailsComponent,
+    title: 'ProductDetails',
+  },
   { path: 'register', component: RegisterComponent, title: 'register' },
-  { path: 'cart', component: CartComponent, title: 'cart' },
-  { path: 'brands', component: BrandsComponent, title: 'brands' },
-  { path: 'categories', component: CategoriesComponent, title: 'categories' },
+  {
+    path: 'cart',
+    canActivate: [authGuard],
+    component: CartComponent,
+    title: 'cart',
+  },
+  {
+    path: 'brands',
+    canActivate: [authGuard],
+    component: BrandsComponent,
+    title: 'brands',
+  },
+  {
+    path: 'categories',
+    canActivate: [authGuard],
+    component: CategoriesComponent,
+    title: 'categories',
+  },
 
   { path: '**', component: NotFoundComponent, title: 'notFound' },
 ];

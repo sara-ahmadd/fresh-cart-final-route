@@ -1,1 +1,10 @@
-<p>category-slider works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let category of allCategories">
+        <img [src]="category.image" height="200" class="w-100" />
+        <h4 class="h5">{{ category.name }}</h4>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</div>

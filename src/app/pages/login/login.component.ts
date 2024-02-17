@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,6 +9,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  showPassword: boolean = false;
+  isLoading: boolean = false;
+  loginError: string = '';
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [
@@ -15,14 +19,8 @@ export class LoginComponent {
       Validators.pattern(/^[A-Z][a-z0-9]{6,8}$/),
     ]),
   });
-  showPassword: boolean = false;
-  isLoading: boolean = false;
-  loginError: string = '';
-  loginSuccess: string = '';
 
-  //methods
-
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService, private _router: Router) {}
 
   displayEyeIcon(val: string) {
     if (val === 'password') {
@@ -42,18 +40,24 @@ export class LoginComponent {
 
   login(form: FormGroup) {
     this.allControlsTouched(form);
-    this.isLoading = true;
     if (form.valid) {
+      this.isLoading = true;
+      this.loginError = '';
+
       this._authService.signIn(form.value).subscribe({
         next: (data) => {
           this.isLoading = false;
-          this.loginSuccess = data.message;
+          if (data.message == 'success') {
+            localStorage.setItem('userToken', data.token);
+            this._authService.setUserToken();
+            this._router.navigate(['/home']);
+          }
           console.log(data);
         },
         error: (error) => {
           this.isLoading = false;
           this.loginError = error.error.message;
-          console.log(error);
+          // console.log(error);
         },
       });
     }

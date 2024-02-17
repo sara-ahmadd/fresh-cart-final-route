@@ -1,1 +1,37 @@
-<p>cart works!</p>
+<div class="container">
+  <div class="row bg-light p-4 border-bottom my-3" *ngIf="totalPrice">
+    <p class="text-main fs-3">Total Cart Cost : {{ totalPrice }}EGP</p>
+  </div>
+  <div
+    class="row justify-content-center bg-light p-4 border-bottom"
+    *ngFor="let item of cartItems"
+  >
+    <div class="col-md-2">
+      <img [src]="item.product.imageCover" class="w-100" height="250" />
+    </div>
+    <div class="col-md-8 d-flex justify-content-between align-items-end">
+      <div class="col-md-6">
+        <p class="fs-3">{{ item.product.title }}</p>
+        <p class="fs-5 text-main">{{ item.product.category.name }}</p>
+        <p>{{ item.price }}EGP</p>
+        <button
+          class="btn btn-outline-danger d-flex justify-content-center align-items-center gap-2"
+        >
+          <i class="fa fa-trash"></i>
+          <span>Remove</span>
+        </button>
+      </div>
+      <div class="col-md-2 d-flex justify-content-between align-items-center">
+        <button class="btn bg-main text-light">
+          <i class="fa fa-plus"></i>
+        </button>
+        <p class="m-0">
+          {{ item.count }}
+        </p>
+        <button class="btn bg-main text-light">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

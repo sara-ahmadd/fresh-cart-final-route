@@ -18,6 +18,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ProductsPageComponent } from './pages/products-page/products-page.component';
+import { AddToCartBtnComponent } from './Shared/add-to-cart-btn/add-to-cart-btn.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,12 +39,16 @@ import { HttpClientModule } from '@angular/common/http';
     CartComponent,
     BrandsComponent,
     CategoriesComponent,
+    ProductsPageComponent,
+    AddToCartBtnComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    CarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

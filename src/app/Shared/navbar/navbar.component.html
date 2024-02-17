@@ -15,7 +15,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="isLoggedIn">
         <li class="nav-item">
           <a class="nav-link" routerLink="/home" routerLinkActive="active"
             >Home</a
@@ -23,7 +23,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/cart" routerLinkActive="active"
-            >Cart</a
+            >Cart <span>{{ cartItemsQuantity }}</span></a
           >
         </li>
         <li class="nav-item">
@@ -52,13 +52,23 @@
           <a class="nav-link"><i class="fab fa-youtube"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link pointer" routerLink="login">SignIn</a>
+          <a class="nav-link pointer" routerLink="login" *ngIf="!isLoggedIn"
+            >SignIn</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link pointer" routerLink="register">Register</a>
+          <a class="nav-link pointer" routerLink="register" *ngIf="!isLoggedIn"
+            >Register</a
+          >
         </li>
         <li class="nav-item">
-          <button class="nav-link pointer">SignOut</button>
+          <button
+            class="nav-link pointer"
+            *ngIf="isLoggedIn"
+            (click)="signOut()"
+          >
+            SignOut
+          </button>
         </li>
       </ul>
     </div>
