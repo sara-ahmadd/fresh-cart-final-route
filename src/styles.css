@@ -88,6 +88,9 @@ body {
 .left-10 {
   left: 10px;
 }
+.pt-100 {
+  padding-top: 100px;
+}
 .border-color-main {
   border-color: var(--main-color);
 }

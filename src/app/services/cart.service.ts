@@ -7,7 +7,7 @@ import { baseUrl } from '../baseUrl';
   providedIn: 'root',
 })
 export class CartService {
-  userToken: string = localStorage.getItem('userToken') || '';
+  userToken: string = localStorage.getItem('userToken') ?? '';
   totalCartItems: BehaviorSubject<number> = new BehaviorSubject(0);
   constructor(private _httpClient: HttpClient) {}
   addToCart(id: string): Observable<any> {
@@ -23,11 +23,41 @@ export class CartService {
       }
     );
   }
+  setCartItemsCount(num: number) {
+    this.totalCartItems.next(num);
+    console.log('from cart service ===>', this.totalCartItems.value);
+  }
   getLoggedUserCart(): Observable<any> {
     return this._httpClient.get(`${baseUrl}/api/v1/cart`, {
       headers: {
         token: this.userToken,
       },
+    });
+  }
+  removeItemFromCart(id: string): Observable<any> {
+    return this._httpClient.delete(`${baseUrl}/api/v1/cart/${id}`, {
+      headers: {
+        token: this.userToken,
+      },
+    });
+  }
+  updateCartItemCount(count: number, id: string): Observable<any> {
+    return this._httpClient.put(
+      `${baseUrl}/api/v1/cart/${id}`,
+      {
+        count: `${count}`,
+      },
+      {
+        headers: {
+          token: this.userToken,
+        },
+      }
+    );
+  }
+
+  clearCart(): Observable<any> {
+    return this._httpClient.delete(`${baseUrl}/api/v1/cart`, {
+      headers: { token: this.userToken },
     });
   }
 }

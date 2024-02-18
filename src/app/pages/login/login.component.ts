@@ -23,19 +23,18 @@ export class LoginComponent {
   constructor(private _authService: AuthService, private _router: Router) {}
 
   displayEyeIcon(val: string) {
-    if (val === 'password') {
-      this.showPassword = !this.showPassword;
-    }
+    this.showPassword = !this.showPassword;
   }
   allControlsTouched(form: FormGroup) {
-    // this.loginForm.markAllAsTouched(); //==> this function also  mark all controls and their descendant controls as touched
-    Object.values(form.controls).forEach((control: any) => {
-      control.markAsTouched();
+    this.loginForm.markAllAsTouched();
+    //==> this function also  mark all controls and their descendant controls as touched
+    // Object.values(form.controls).forEach((control: any) => {
+    //   control.markAsTouched();
 
-      if (control.controls) {
-        this.allControlsTouched(control);
-      }
-    });
+    //   if (control.controls) {
+    //     this.allControlsTouched(control);
+    //   }
+    // });
   }
 
   login(form: FormGroup) {

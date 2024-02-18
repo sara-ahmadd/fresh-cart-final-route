@@ -9,14 +9,23 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class NavbarComponent {
   isLoggedIn: boolean = false;
-  cartItemsQuantity!: number;
+  cartItemsQuantity: number = 0;
   constructor(
     private _authService: AuthService,
     private _cartService: CartService
   ) {
-    _authService.userToken.subscribe({
+    this.checkLoggedUser();
+    this._cartService.totalCartItems.subscribe({
       next: () => {
-        const token = this._authService.userToken.getValue();
+        this.cartItemsQuantity = this._cartService.totalCartItems.value;
+      },
+    });
+  }
+
+  checkLoggedUser() {
+    this._authService.userToken.subscribe({
+      next: () => {
+        const token = this._authService.userToken.value;
         if (token.length > 0 && token !== 'null') {
           this.isLoggedIn = true;
         } else {
@@ -24,15 +33,19 @@ export class NavbarComponent {
         }
       },
     });
-
-    _cartService.totalCartItems.subscribe({
-      next: () => {
-        const itemsCount = this._cartService.totalCartItems.getValue();
-        this.cartItemsQuantity = itemsCount;
-      },
-    });
   }
-
+  getCartItemsCount() {
+    if (this.isLoggedIn) {
+      this._cartService.totalCartItems.subscribe({
+        next: () => {
+          const items = this._cartService.totalCartItems.value;
+          if (items) {
+            this.cartItemsQuantity = items;
+          }
+        },
+      });
+    }
+  }
   signOut() {
     this._authService.signOut();
   }

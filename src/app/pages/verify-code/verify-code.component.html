@@ -1,0 +1,28 @@
+<div class="container py-5">
+  <div class="alert alert-danger" *ngIf="errorMsg">
+    <p>{{ errorMsg }}</p>
+  </div>
+  <form [formGroup]="verifyCode" (ngSubmit)="verifyCodeOnSubmit(verifyCode)">
+    <div class="form-group mb-3">
+      <label for="resetCode" class="pb-2">Reset Code</label>
+      <input
+        id="resetCode"
+        type="text"
+        class="form-control"
+        formControlName="resetCode"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          verifyCode.get('resetCode')?.errors &&
+          verifyCode.get('resetCode')?.touched
+        "
+      >
+        <p *ngIf="verifyCode.get('resetCode')?.getError('requried')">
+          resetCode is Required
+        </p>
+      </div>
+    </div>
+    <button type="submit" class="btn bg-main text-light" [disabled]="verifyCode.invalid || loader" >Reset Password</button>
+  </form>
+</div>

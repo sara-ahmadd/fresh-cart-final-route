@@ -22,6 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ProductsPageComponent } from './pages/products-page/products-page.component';
 import { AddToCartBtnComponent } from './Shared/add-to-cart-btn/add-to-cart-btn.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { VerifyCodeComponent } from './pages/verify-code/verify-code.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +44,9 @@ import { AddToCartBtnComponent } from './Shared/add-to-cart-btn/add-to-cart-btn.
     CategoriesComponent,
     ProductsPageComponent,
     AddToCartBtnComponent,
+    ForgotPasswordComponent,
+    VerifyCodeComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

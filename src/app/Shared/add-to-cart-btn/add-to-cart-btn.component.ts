@@ -15,16 +15,18 @@ export class AddToCartBtnComponent {
   addProductToCart() {
     this._cartService.addToCart(this.productId).subscribe({
       next: (data) => {
-        if (data.status == 'success') {
+        // this._cartService.totalCartItems.next(data.numberOfCartItems);
+        this._cartService.setCartItemsCount(data.numberOfCartItems);
+        console.log(data);
+        if (data.status === 'success') {
           Swal.fire({
             position: 'center',
             icon: 'success',
             title: data.message,
             showConfirmButton: false,
-            timer: 2000,
+            timer: 1000,
           });
         }
-        console.log(data);
       },
       error: (err) => {
         console.log(err);

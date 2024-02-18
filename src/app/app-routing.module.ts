@@ -10,6 +10,9 @@ import { BrandsComponent } from './pages/brands/brands.component';
 import { authGuard } from 'src/auth.guard';
 import { ProductsPageComponent } from './pages/products-page/products-page.component';
 import { DetailsComponent } from './pages/details/details.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { VerifyCodeComponent } from './pages/verify-code/verify-code.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -20,6 +23,21 @@ const routes: Routes = [
     title: 'home',
   },
   { path: 'login', component: LoginComponent, title: 'login' },
+  {
+    path: 'forgotPassword',
+    component: ForgotPasswordComponent,
+    title: 'Reset Password',
+  },
+  {
+    path: 'verifyCode',
+    component: VerifyCodeComponent,
+    title: 'Code Verification',
+  },
+  {
+    path: 'resetPassword',
+    component: ResetPasswordComponent,
+    title: 'Reset Password',
+  },
   {
     path: 'products',
     canActivate: [authGuard],
