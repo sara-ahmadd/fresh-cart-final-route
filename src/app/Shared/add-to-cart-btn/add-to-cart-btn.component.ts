@@ -15,8 +15,8 @@ export class AddToCartBtnComponent {
   addProductToCart() {
     this._cartService.addToCart(this.productId).subscribe({
       next: (data) => {
-        // this._cartService.totalCartItems.next(data.numberOfCartItems);
-        this._cartService.setCartItemsCount(data.numberOfCartItems);
+        this._cartService.totalCartItems.next(data.numberOfCartItems);
+        // this._cartService.setCartItemsCount(data.numberOfCartItems);
         console.log(data);
         if (data.status === 'success') {
           Swal.fire({
@@ -24,7 +24,7 @@ export class AddToCartBtnComponent {
             icon: 'success',
             title: data.message,
             showConfirmButton: false,
-            timer: 1000,
+            timer: 1200,
           });
         }
       },

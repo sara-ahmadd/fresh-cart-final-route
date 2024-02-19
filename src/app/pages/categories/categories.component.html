@@ -1,1 +1,53 @@
+<div class="container">
+  <div class="row gap-3 justify-content-center">
+    <div
+      class="col-sm-5 col-md-3 shadow pointer"
+      *ngFor="let category of categories"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      (click)="openModal(category._id ?? '')"
+    >
+      <img
+        [src]="category.image"
+        [alt]="category.name"
+        class="w-100"
+        height="300"
+      />
+      <p class="fs-4 text-main text-center fw-bold">{{ category.name }}</p>
+    </div>
+  </div>
+</div>
 
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-main ms-auto" id="exampleModalLabel">
+          Sub Categories
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body" *ngIf="subCategoriesArray.length == 0">
+        <p class="text-main fs-5">No SubCategories in this category.</p>
+      </div>
+      <div class="modal-body" *ngIf="subCategoriesArray.length > 0">
+        <p *ngFor="let subCat of subCategoriesArray" class="p-2 shadow">
+          {{ subCat.name }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/cart.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cart',
@@ -43,6 +44,7 @@ export class CartComponent implements OnInit {
             this.cartItems = data.data.products;
             this.totalPrice = data.data.totalCartPrice;
             this._cartService.setCartItemsCount(data.data.numberOfCartItems);
+
             console.log('data from cartUpdate function', data);
           }
         },
@@ -55,10 +57,20 @@ export class CartComponent implements OnInit {
   removeItem(id: string) {
     this._cartService.removeItemFromCart(id).subscribe({
       next: (data) => {
-        this.cartItems = data.data.products;
-        this.totalPrice = data.data.totalCartPrice;
-        this._cartService.setCartItemsCount(data.numberOfCartItems);
-        console.log(data);
+        if (data.status == 'success') {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Product removed from your cart successfully',
+            showConfirmButton: false,
+            timer: 1300,
+          });
+          this.cartItems = data.data.products;
+          this.totalPrice = data.data.totalCartPrice;
+
+          this._cartService.totalCartItems.next(data.numberOfCartItems);
+          console.log(data);
+        }
       },
     });
   }

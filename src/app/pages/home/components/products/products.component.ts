@@ -9,6 +9,7 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductsComponent implements OnInit {
   allProducts: Product[] = [];
+  // successMsgFromWishList: string = '';
   constructor(private _productsService: ProductsService) {}
   ngOnInit(): void {
     this.getProducts();
@@ -16,7 +17,9 @@ export class ProductsComponent implements OnInit {
   getProducts() {
     this._productsService.getAllProducts().subscribe({
       next: (data) => {
-        this.allProducts = data.data;
+        if (data) {
+          this.allProducts = data.data;
+        }
         // console.log(this.allProducts);
       },
       error: (err) => {
@@ -24,4 +27,7 @@ export class ProductsComponent implements OnInit {
       },
     });
   }
+  // displayMsg(msg: string) {
+  //   this.successMsgFromWishList = msg;
+  // }
 }

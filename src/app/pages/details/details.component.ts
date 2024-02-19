@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/products.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-details',
@@ -10,7 +11,23 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent implements OnInit {
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1,
+      },
+    },
+    nav: true,
+  };
   productId: string = this._activatedRoute.snapshot.params['id'];
+
   productDetails!: Product;
   constructor(
     private _productsService: ProductsService,

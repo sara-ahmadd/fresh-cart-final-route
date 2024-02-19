@@ -15,24 +15,31 @@ export class NavbarComponent {
     private _cartService: CartService
   ) {
     this.checkLoggedUser();
-    this._cartService.totalCartItems.subscribe({
-      next: () => {
-        this.cartItemsQuantity = this._cartService.totalCartItems.value;
-      },
+    this._cartService.totalCartItems.subscribe((value) => {
+      this.cartItemsQuantity = value;
+      console.log(value);
     });
   }
 
   checkLoggedUser() {
-    this._authService.userToken.subscribe({
-      next: () => {
-        const token = this._authService.userToken.value;
-        if (token.length > 0 && token !== 'null') {
-          this.isLoggedIn = true;
-        } else {
-          this.isLoggedIn = false;
-        }
-      },
+    this._authService.userToken.subscribe((value) => {
+      if (value.length > 0 && value !== 'null') {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
     });
+
+    // this._authService.userToken.subscribe({
+    //   next: () => {
+    //     const token = this._authService.userToken.value;
+    //     if (token.length > 0 && token !== 'null') {
+    //       this.isLoggedIn = true;
+    //     } else {
+    //       this.isLoggedIn = false;
+    //     }
+    //   },
+    // });
   }
   getCartItemsCount() {
     if (this.isLoggedIn) {

@@ -25,6 +25,8 @@ import { AddToCartBtnComponent } from './Shared/add-to-cart-btn/add-to-cart-btn.
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { VerifyCodeComponent } from './pages/verify-code/verify-code.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { WishListComponent } from './pages/wish-list/wish-list.component';
+import { HeartIconComponent } from './Shared/heart-icon/heart-icon.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +49,8 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
     ForgotPasswordComponent,
     VerifyCodeComponent,
     ResetPasswordComponent,
+    WishListComponent,
+    HeartIconComponent,
   ],
   imports: [
     BrowserModule,

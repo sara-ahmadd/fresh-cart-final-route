@@ -13,6 +13,7 @@ import { DetailsComponent } from './pages/details/details.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { VerifyCodeComponent } from './pages/verify-code/verify-code.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { WishListComponent } from './pages/wish-list/wish-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -50,6 +51,12 @@ const routes: Routes = [
     title: 'ProductDetails',
   },
   { path: 'register', component: RegisterComponent, title: 'register' },
+  {
+    path: 'wishList',
+    canActivate: [authGuard],
+    component: WishListComponent,
+    title: 'wishList',
+  },
   {
     path: 'cart',
     canActivate: [authGuard],

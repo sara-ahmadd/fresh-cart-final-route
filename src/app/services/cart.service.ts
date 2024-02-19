@@ -25,7 +25,6 @@ export class CartService {
   }
   setCartItemsCount(num: number) {
     this.totalCartItems.next(num);
-    console.log('from cart service ===>', this.totalCartItems.value);
   }
   getLoggedUserCart(): Observable<any> {
     return this._httpClient.get(`${baseUrl}/api/v1/cart`, {
