@@ -14,15 +14,9 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { VerifyCodeComponent } from './pages/verify-code/verify-code.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { WishListComponent } from './pages/wish-list/wish-list.component';
+import { CheckOutComponent } from './pages/check-out/check-out.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {
-    path: 'home',
-    canActivate: [authGuard],
-    component: HomeComponent,
-    title: 'home',
-  },
   { path: 'login', component: LoginComponent, title: 'login' },
   {
     path: 'forgotPassword',
@@ -39,6 +33,19 @@ const routes: Routes = [
     component: ResetPasswordComponent,
     title: 'Reset Password',
   },
+  { path: 'register', component: RegisterComponent, title: 'register' },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+    title: 'home',
+  },
+  {
+    path: 'home',
+    canActivate: [authGuard],
+    component: HomeComponent,
+    title: 'home',
+  },
   {
     path: 'products',
     canActivate: [authGuard],
@@ -47,15 +54,21 @@ const routes: Routes = [
   },
   {
     path: 'productDetails/:id',
+    canActivate: [authGuard],
     component: DetailsComponent,
     title: 'ProductDetails',
   },
-  { path: 'register', component: RegisterComponent, title: 'register' },
   {
     path: 'wishList',
     canActivate: [authGuard],
     component: WishListComponent,
     title: 'wishList',
+  },
+  {
+    path: 'checkOut',
+    canActivate: [authGuard],
+    component: CheckOutComponent,
+    title: 'CheckOut',
   },
   {
     path: 'cart',

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -10,48 +11,35 @@ import { CartService } from 'src/app/services/cart.service';
 export class NavbarComponent {
   isLoggedIn: boolean = false;
   cartItemsQuantity: number = 0;
+
   constructor(
     private _authService: AuthService,
     private _cartService: CartService
   ) {
     this.checkLoggedUser();
-    this._cartService.totalCartItems.subscribe((value) => {
-      this.cartItemsQuantity = value;
-      console.log(value);
-    });
+    this.getUserCart();
+    this._cartService.totalCartItems.subscribe(
+      (val) => (this.cartItemsQuantity = val)
+    );
   }
 
   checkLoggedUser() {
     this._authService.userToken.subscribe((value) => {
-      if (value.length > 0 && value !== 'null') {
+      if (value?.length > 0 && value !== 'null') {
         this.isLoggedIn = true;
       } else {
         this.isLoggedIn = false;
       }
     });
-
-    // this._authService.userToken.subscribe({
-    //   next: () => {
-    //     const token = this._authService.userToken.value;
-    //     if (token.length > 0 && token !== 'null') {
-    //       this.isLoggedIn = true;
-    //     } else {
-    //       this.isLoggedIn = false;
-    //     }
-    //   },
-    // });
   }
-  getCartItemsCount() {
-    if (this.isLoggedIn) {
-      this._cartService.totalCartItems.subscribe({
-        next: () => {
-          const items = this._cartService.totalCartItems.value;
-          if (items) {
-            this.cartItemsQuantity = items;
-          }
-        },
-      });
-    }
+  getUserCart() {
+    this._cartService.getLoggedUserCart().subscribe({
+      next: (data) => {
+        if (data.status == 'success') {
+          this._cartService.setCartItemsCount(data.numOfCartItems);
+        }
+      },
+    });
   }
   signOut() {
     this._authService.signOut();

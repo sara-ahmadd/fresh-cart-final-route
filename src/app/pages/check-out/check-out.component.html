@@ -1,0 +1,62 @@
+<div class="container">
+  <form
+    class="col-md-8 py-5 mx-auto"
+    [formGroup]="checkOutForm"
+    (ngSubmit)="paymentFunction(checkOutForm)"
+  >
+    <h1 class="h3">Shipping Address:</h1>
+    <div class="alert alert-danger" *ngIf="paymentError.length > 0">
+      {{ paymentError }}
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="Email" class="pb-2">Details</label>
+      <input
+        id="Email"
+        type="text"
+        class="form-control"
+        formControlName="details"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="Phone" class="pb-2">Phone</label>
+      <input
+        id="Phone"
+        type="tel"
+        class="form-control"
+        formControlName="phone"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="City" class="pb-2">City</label>
+      <input
+        id="City"
+        type="text"
+        class="form-control"
+        formControlName="city"
+      />
+    </div>
+    <!-- <div
+        class="alert alert-danger"
+        *ngIf="
+          checkOutForm.get('email')?.errors &&
+          checkOutForm.get('email')?.touched
+        "
+      >
+        <p *ngIf="checkOutForm.get('email')?.getError('required')">
+          Email is Required
+        </p>
+        <p *ngIf="checkOutForm.get('email')?.getError('email')">
+          Email is not valid
+        </p>
+      </div> -->
+
+    <button
+      class="btn bg-main text-white d-block mx-auto w-75"
+      [disabled]="checkOutForm.invalid || isLoading"
+    >
+      <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+      <span *ngIf="!isLoading" class="fw-bold"> Pay</span>
+    </button>
+  </form>
+</div>

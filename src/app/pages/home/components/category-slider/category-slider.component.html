@@ -3,7 +3,7 @@
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide *ngFor="let category of allCategories">
         <img [src]="category.image" height="200" class="w-100" />
-        <h4 class="h5">{{ category.name }}</h4>
+        <h4 class="fs-6 text-center fw-bold text-main">{{ category.name }}</h4>
       </ng-template>
     </owl-carousel-o>
   </div>

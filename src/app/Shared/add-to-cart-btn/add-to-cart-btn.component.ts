@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
+import { LoaderService } from 'src/app/services/loader.service';
+import { WishListService } from 'src/app/services/wish-list.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,15 +12,21 @@ import Swal from 'sweetalert2';
 export class AddToCartBtnComponent {
   @Input() page: string = '';
   @Input() productId: string = '';
-  constructor(private _cartService: CartService) {}
+  @Input() removeProduct!: (productId: string) => void;
+  constructor(
+    private _cartService: CartService,
+    private _loader: LoaderService
+  ) {}
 
   addProductToCart() {
+    this._loader.show();
     this._cartService.addToCart(this.productId).subscribe({
       next: (data) => {
-        this._cartService.totalCartItems.next(data.numberOfCartItems);
-        // this._cartService.setCartItemsCount(data.numberOfCartItems);
         console.log(data);
         if (data.status === 'success') {
+          this._loader.hide();
+          const itemsInCart = data.numOfCartItems;
+          this._cartService.setCartItemsCount(itemsInCart);
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -29,6 +37,7 @@ export class AddToCartBtnComponent {
         }
       },
       error: (err) => {
+        this._loader.hide();
         console.log(err);
       },
     });

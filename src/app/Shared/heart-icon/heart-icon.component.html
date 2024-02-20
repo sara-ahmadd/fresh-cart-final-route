@@ -2,4 +2,6 @@
   class="fa-solid fa-heart fs-2 text-main"
   [class.heart-icon]="page == 'products'"
   (click)="addProductToWishList(prodId)"
+  [class.text-red]="redColor"
+  [class.opacity-100]="redColor"
 ></i>

@@ -5,7 +5,7 @@
       *ngFor="let category of categories"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
-      (click)="openModal(category._id ?? '')"
+      (click)="openModal(category._id ?? '', category.name ?? '')"
     >
       <img
         [src]="category.image"
@@ -30,7 +30,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title text-main ms-auto" id="exampleModalLabel">
-          Sub Categories
+          {{ subCategoryName }} SubCategories
         </h5>
         <button
           type="button"

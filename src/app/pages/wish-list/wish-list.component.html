@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="row" *ngIf="productsCount == 0">
+    <p class="h3 text-main fw-bold">Your WishList Is Empty</p>
+  </div>
   <div
     class="row bg-light p-4 border-bottom my-3 justify-content-between"
     *ngIf="productsCount > 0"
@@ -27,7 +30,9 @@
           <i class="fa fa-trash"></i>
           <span>Remove</span>
         </button>
-        <app-add-to-cart-btn [productId]="item._id"></app-add-to-cart-btn>
+        <div (click)="removeProduct(item._id)" class="h-auto w-auto">
+          <app-add-to-cart-btn [productId]="item._id"></app-add-to-cart-btn>
+        </div>
       </div>
     </div>
   </div>

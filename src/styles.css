@@ -16,6 +16,7 @@ a {
 
 :root {
   --main-color: #0aad0a;
+  --main-color-opacity: rgb(10, 173, 10, 0.45);
   --light-color: #f0f3f2;
   --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
     rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
@@ -44,6 +45,9 @@ a {
 
 body {
   font-family: var(--font-family) !important;
+}
+.min-height-500 {
+  min-height: 700px;
 }
 .text-main {
   color: var(--main-color);
@@ -81,6 +85,9 @@ body {
 .border-color-main {
   border-color: var(--main-color) !important;
 }
+.text-red {
+  color: red;
+}
 .eye-icon {
   right: 10px;
   top: 45px;
@@ -91,16 +98,20 @@ body {
 .left-10 {
   left: 10px;
 }
+.left-40 {
+  left: 40px;
+}
 .pt-100 {
   padding-top: 100px;
+}
+.w-fit-content {
+  width: fit-content;
 }
 .border-color-main {
   border-color: var(--main-color);
 }
 .product-card {
   border: 2px solid transparent;
-  /*box-shadow: var(--shadow);
-  */
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -140,14 +151,14 @@ body {
   content: "";
   width: 10px;
   height: 10px;
-  border-width: 10px;
+  border-width: 15px;
   /* border-color: var(--main-color); */
   border-top-color: var(--main-color);
   border-right-color: transparent;
   border-bottom-color: transparent;
   border-left-color: transparent;
   border-style: solid;
-  bottom: -17.5px;
+  bottom: -25px;
   left: 50%;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);

@@ -27,6 +27,8 @@ import { VerifyCodeComponent } from './pages/verify-code/verify-code.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { WishListComponent } from './pages/wish-list/wish-list.component';
 import { HeartIconComponent } from './Shared/heart-icon/heart-icon.component';
+import { CheckOutComponent } from './pages/check-out/check-out.component';
+import { LoaderComponent } from './pages/loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +53,8 @@ import { HeartIconComponent } from './Shared/heart-icon/heart-icon.component';
     ResetPasswordComponent,
     WishListComponent,
     HeartIconComponent,
+    CheckOutComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

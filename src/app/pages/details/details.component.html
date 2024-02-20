@@ -19,6 +19,11 @@
           <app-heart-icon [prodId]="productDetails._id"></app-heart-icon>
         </div>
       </div>
+      <div
+        class="col-md-2 d-flex align-items-center justify-content-start px-2 gap-3"
+      >
+        <img [src]="productDetails.brand.image" alt="" class="w-100" />
+      </div>
       <div class="d-flex align-items-center justify-content-between">
         <p>{{ productDetails.price }}EGP</p>
         <div class="d-flex align-items-baseline justify-content-center">

@@ -59,14 +59,14 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-1">
-        <li class="nav-item pe-2">
+        <li class="nav-item pe-2" *ngIf="isLoggedIn">
           <a
             class="nav-link position-relative"
             routerLink="/cart"
-            routerLinkActive="active-component text-light rounded-circle p-2"
+            routerLinkActive="active-component text-light rounded-circle p-2 w-fit-content"
             ><i class="fa-solid fa-cart-shopping fs-4"></i>
             <span
-              class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger"
+              class="position-absolute top-10 left-40 translate-middle badge rounded-pill bg-danger"
             >
               {{ cartItemsQuantity }}
             </span></a

@@ -19,6 +19,10 @@ export class DetailsComponent implements OnInit {
     dots: false,
     navSpeed: 700,
     navText: ['', ''],
+    autoplay: true,
+    autoplaySpeed: 700,
+    autoplayTimeout: 100,
+    autoplayHoverPause: true,
     responsive: {
       0: {
         items: 1,
