@@ -19,7 +19,6 @@ import Swal from 'sweetalert2';
 export class WishListComponent implements OnInit, OnDestroy {
   productsArray: Product[] = [];
   productsCount: number = 0;
-
   cancelGetProducts!: Subscription;
   cancelRemoveProduct!: Subscription;
 
@@ -57,7 +56,7 @@ export class WishListComponent implements OnInit, OnDestroy {
             position: 'center',
             icon: 'success',
             title: data.message,
-            showConfirmButton: true,
+            showConfirmButton: false,
             timer: 1500,
           });
           if (this.productsArray) {

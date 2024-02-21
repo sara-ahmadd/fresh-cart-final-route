@@ -29,6 +29,9 @@ import { WishListComponent } from './pages/wish-list/wish-list.component';
 import { HeartIconComponent } from './Shared/heart-icon/heart-icon.component';
 import { CheckOutComponent } from './pages/check-out/check-out.component';
 import { LoaderComponent } from './pages/loader/loader.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { SearchPipe } from './pipes/search.pipe';
+import { DatePipe } from './pipes/date.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +58,9 @@ import { LoaderComponent } from './pages/loader/loader.component';
     HeartIconComponent,
     CheckOutComponent,
     LoaderComponent,
+    OrdersComponent,
+    SearchPipe,
+    DatePipe,
   ],
   imports: [
     BrowserModule,

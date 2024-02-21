@@ -47,7 +47,7 @@ body {
   font-family: var(--font-family) !important;
 }
 .min-height-500 {
-  min-height: 700px;
+  min-height: 500px;
 }
 .text-main {
   color: var(--main-color);
@@ -82,7 +82,7 @@ body {
 .border-pale-gray {
   border-color: var(--pale-gray);
 }
-.border-color-main {
+.border-main {
   border-color: var(--main-color) !important;
 }
 .text-red {
@@ -91,6 +91,9 @@ body {
 .eye-icon {
   right: 10px;
   top: 45px;
+}
+.top-40 {
+  top: 40px;
 }
 .top-10 {
   top: 10px;

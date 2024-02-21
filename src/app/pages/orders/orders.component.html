@@ -1,0 +1,65 @@
+<div class="container min-height-500 pt-5">
+  <h2
+    class="text-center text-main mb-2 fw-bold fixed-top top-40 mx-auto p-3 header-bg rounded-2 w-fit-content"
+  >
+    All Your Orders
+  </h2>
+  <div *ngFor="let order of orders" class="p-3 mb-4 shadow order-card">
+    <div class="row">
+      <div class="col-md-8">
+        <p class="text-main fw-bold fs-5">
+          CreatedAt :
+          <span class="text-black"
+            >{{ order.createdAt | date }}
+            <small class="text-muted">(month/day/year)</small></span
+          >
+        </p>
+        <p class="text-main fw-bold fs-5" *ngIf="order.isPaid">Paid ✔</p>
+        <p class="text-main fw-bold fs-5" *ngIf="!order.isPaid">Not Paid</p>
+        <p class="text-main fw-bold fs-5" *ngIf="order.isDelivered">
+          Delivered ✔
+        </p>
+        <p class="text-main fw-bold fs-5" *ngIf="!order.isDelivered">
+          Not Delivered
+        </p>
+        <p class="text-main fw-bold fs-5">
+          PaymentMethodType :
+          <span class="text-black">{{ order.paymentMethodType }}</span>
+        </p>
+        <dl>
+          <dt class="text-main fw-bold fs-5">Shipping Details :</dt>
+          <dd>
+            <p class="text-main fw-bold fs-6">
+              - Details:
+              <span class="text-black">{{
+                order.shippingAddress.details
+              }}</span>
+            </p>
+          </dd>
+          <dd>
+            <p class="text-main fw-bold fs-6">
+              - Phone :
+              <span class="text-black">{{ order.shippingAddress.phone }}</span>
+            </p>
+          </dd>
+          <dd>
+            <p class="text-main fw-bold fs-6">
+              - City :
+              <span class="text-black">{{ order.shippingAddress.city }}</span>
+            </p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="row gap-2 justify-content-center align-items-strech">
+      <div
+        class="col-xs-5 col-sm-3 col-md-2 border border-2 p-2 rounded-1"
+        *ngFor="let item of order.cartItems"
+      >
+        <img [src]="item.product.imageCover" class="w-100" alt="" />
+        <p>{{ item.product.title }}</p>
+        <p>{{ item.product.category.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@
   >
     <h1 class="h3">Shipping Address:</h1>
     <div class="alert alert-danger" *ngIf="paymentError.length > 0">
-      {{ paymentError }}
+      {{ paymentErrors | json }}
     </div>
 
     <div class="form-group mb-3">
@@ -16,7 +16,20 @@
         type="text"
         class="form-control"
         formControlName="details"
+        [ngClass]="{
+          'is-valid': !detailsControl?.errors && detailsControl?.touched,
+          'is-invalid': detailsControl?.errors && detailsControl?.touched
+        }"
       />
+      <div
+        class="alert alert-danger"
+        *ngIf="detailsControl?.errors && detailsControl?.touched"
+      >
+        <p *ngIf="detailsControl?.getError('required')">Details is Required</p>
+        <p *ngIf="detailsControl?.getError('minlength')">
+          Details is not valid
+        </p>
+      </div>
     </div>
     <div class="form-group mb-3">
       <label for="Phone" class="pb-2">Phone</label>
@@ -25,7 +38,18 @@
         type="tel"
         class="form-control"
         formControlName="phone"
+        [ngClass]="{
+          'is-valid': !phoneControl?.errors && phoneControl?.touched,
+          'is-invalid': phoneControl?.errors && phoneControl?.touched
+        }"
       />
+      <div
+        class="alert alert-danger"
+        *ngIf="phoneControl?.errors && phoneControl?.touched"
+      >
+        <p *ngIf="phoneControl?.getError('required')">Phone is Required</p>
+        <p *ngIf="phoneControl?.getError('pattern')">Phone is not valid</p>
+      </div>
     </div>
     <div class="form-group mb-3">
       <label for="City" class="pb-2">City</label>
@@ -34,29 +58,25 @@
         type="text"
         class="form-control"
         formControlName="city"
+        [ngClass]="{
+          'is-valid': !cityControl?.errors && cityControl?.touched,
+          'is-invalid': cityControl?.errors && cityControl?.touched
+        }"
       />
-    </div>
-    <!-- <div
+      <div
         class="alert alert-danger"
-        *ngIf="
-          checkOutForm.get('email')?.errors &&
-          checkOutForm.get('email')?.touched
-        "
+        *ngIf="cityControl?.errors && cityControl?.touched"
       >
-        <p *ngIf="checkOutForm.get('email')?.getError('required')">
-          Email is Required
-        </p>
-        <p *ngIf="checkOutForm.get('email')?.getError('email')">
-          Email is not valid
-        </p>
-      </div> -->
+        <p *ngIf="cityControl?.getError('required')">City is Required</p>
+        <p *ngIf="cityControl?.getError('minlength')">City is not valid</p>
+      </div>
+    </div>
 
     <button
       class="btn bg-main text-white d-block mx-auto w-75"
-      [disabled]="checkOutForm.invalid || isLoading"
+      [disabled]="checkOutForm.invalid"
     >
-      <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
-      <span *ngIf="!isLoading" class="fw-bold"> Pay</span>
+      <span class="fw-bold"> Pay</span>
     </button>
   </form>
 </div>

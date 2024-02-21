@@ -38,6 +38,7 @@ export class AddToCartBtnComponent {
       },
       error: (err) => {
         this._loader.hide();
+        this._cartService.userToken;
         console.log(err);
       },
     });

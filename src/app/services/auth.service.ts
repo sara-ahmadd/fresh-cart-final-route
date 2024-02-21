@@ -10,8 +10,8 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root',
 })
 export class AuthService {
-  userToken: BehaviorSubject<string> = new BehaviorSubject(
-    JSON.stringify(localStorage.getItem('userToken'))
+  userToken: BehaviorSubject<string> = new BehaviorSubject<string>(
+    localStorage.getItem('userToken') ?? ''
   );
 
   constructor(private _httpClient: HttpClient, private _router: Router) {}

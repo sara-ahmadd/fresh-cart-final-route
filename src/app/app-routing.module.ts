@@ -15,6 +15,7 @@ import { VerifyCodeComponent } from './pages/verify-code/verify-code.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { WishListComponent } from './pages/wish-list/wish-list.component';
 import { CheckOutComponent } from './pages/check-out/check-out.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, title: 'login' },
@@ -35,15 +36,15 @@ const routes: Routes = [
   },
   { path: 'register', component: RegisterComponent, title: 'register' },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-    title: 'home',
-  },
-  {
     path: 'home',
     canActivate: [authGuard],
     component: HomeComponent,
+    title: 'home',
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
     title: 'home',
   },
   {
@@ -74,6 +75,12 @@ const routes: Routes = [
     path: 'cart',
     canActivate: [authGuard],
     component: CartComponent,
+    title: 'cart',
+  },
+  {
+    path: 'allorders',
+    canActivate: [authGuard],
+    component: OrdersComponent,
     title: 'cart',
   },
   {

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row px-2 align-items-center" *ngIf="productDetails; else loader">
+  <div class="row px-2 align-items-center" *ngIf="productDetails">
     <div class="col-md-4">
       <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide>
@@ -16,7 +16,10 @@
       <div class="d-flex align-items-center justify-content-between">
         <p class="fs-6 text-main">{{ productDetails.category.name }}</p>
         <div class="pointer">
-          <app-heart-icon [prodId]="productDetails._id"></app-heart-icon>
+          <app-heart-icon
+            [prodId]="productDetails._id"
+            [redColor]="heartIconRedColor"
+          ></app-heart-icon>
         </div>
       </div>
       <div
@@ -38,8 +41,3 @@
     </div>
   </div>
 </div>
-<ng-template #loader>
-  <div class="d-flex justify-content-center align-items-center h-100 w-100">
-    <i class="fa fa-spinner fa-spin text-main fs-1 p-5"></i>
-  </div>
-</ng-template>

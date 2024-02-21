@@ -10,13 +10,20 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class NavbarComponent {
   isLoggedIn: boolean = false;
+
   cartItemsQuantity: number = 0;
 
   constructor(
     private _authService: AuthService,
     private _cartService: CartService
   ) {
-    this.checkLoggedUser();
+    this._authService.userToken.subscribe((value) => {
+      if (value?.length > 0 && value !== 'null') {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
     this.getUserCart();
     this._cartService.totalCartItems.subscribe(
       (val) => (this.cartItemsQuantity = val)
@@ -38,6 +45,9 @@ export class NavbarComponent {
         if (data.status == 'success') {
           this._cartService.setCartItemsCount(data.numOfCartItems);
         }
+      },
+      error: (err) => {
+        console.log(err);
       },
     });
   }

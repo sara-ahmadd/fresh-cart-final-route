@@ -1,0 +1,14 @@
+.order-card {
+  border: none;
+  transition: all 0.1s linear;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  -ms-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+}
+.order-card:hover {
+  border: 2px solid var(--main-color);
+}
+.header-bg {
+  background: rgb(121, 244, 119, 0.4);
+}
