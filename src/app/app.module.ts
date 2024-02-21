@@ -16,7 +16,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -68,6 +68,7 @@ import { DatePipe } from './pipes/date.pipe';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
     CarouselModule,
   ],
   providers: [],

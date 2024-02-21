@@ -24,8 +24,8 @@ export class OrdersComponent implements OnInit {
     this._checkOutService.getAllOrders(this.userid).subscribe({
       next: (data) => {
         this._loader.hide();
-        console.log(data);
-        this.orders = data;
+        // console.log(data);
+        this.orders = data.reverse();
       },
       error: (err) => {
         this._loader.hide();

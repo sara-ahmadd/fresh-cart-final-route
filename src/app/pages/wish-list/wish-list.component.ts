@@ -52,6 +52,7 @@ export class WishListComponent implements OnInit, OnDestroy {
     this.cancelRemoveProduct = this._wishListService.removeItem(id).subscribe({
       next: (data) => {
         if (data.status == 'success') {
+          this.productsCount = data.data.length ?? 0;
           Swal.fire({
             position: 'center',
             icon: 'success',

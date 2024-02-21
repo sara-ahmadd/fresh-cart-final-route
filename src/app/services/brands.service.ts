@@ -12,4 +12,7 @@ export class BrandsService {
   getAllBrands(): Observable<any> {
     return this._httpClient.get(`${baseUrl}/api/v1/brands`);
   }
+  getOneBrand(brandId: string): Observable<any> {
+    return this._httpClient.get(`${baseUrl}/api/v1/brands/${brandId}`);
+  }
 }

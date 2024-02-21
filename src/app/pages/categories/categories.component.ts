@@ -42,9 +42,7 @@ export class CategoriesComponent implements OnInit {
       });
     }
   }
-  // closeModal() {
-  //   this.cancelSubscribtion['subcategories']?.unsubscribe();
-  // }
+
   getCategories() {
     this._loader.show();
     this._categories.getAllCategories().subscribe({

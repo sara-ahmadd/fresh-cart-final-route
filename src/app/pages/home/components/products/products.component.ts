@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Product } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/cart.service';
 import { LoaderService } from 'src/app/services/loader.service';
@@ -14,7 +15,7 @@ export class ProductsComponent implements OnInit {
   allProducts: Product[] = [];
   wishListProducts: any[] = [];
   cartItemsCount: number = 0;
-
+  searchTerm: string = '';
   constructor(
     private _productsService: ProductsService,
     private _cartService: CartService,
