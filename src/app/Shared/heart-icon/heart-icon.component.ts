@@ -33,7 +33,6 @@ export class HeartIconComponent {
               timer: 1500,
             });
           } else {
-            console.log(data);
             this.successMsg = data.message;
             this.redColor = true;
             Swal.fire({

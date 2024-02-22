@@ -22,7 +22,7 @@ export class VerifyCodeComponent {
       this._authService.verifyResetCode(form.value).subscribe({
         next: (data: any) => {
           this.loader = false;
-          console.log(data);
+
           if (data.status == 'Success') {
             this._router.navigate(['/resetPassword']);
           }
@@ -30,7 +30,6 @@ export class VerifyCodeComponent {
         error: (err) => {
           this.loader = false;
           this.errorMsg = err.error.message;
-          console.log(err);
         },
       });
     }

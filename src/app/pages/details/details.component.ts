@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/products.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { WishListService } from 'src/app/services/wish-list.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -35,6 +36,7 @@ export class DetailsComponent implements OnInit {
   productId: string = this._activatedRoute.snapshot.params['id'];
   heartIconRedColor: boolean = false;
   productDetails!: Product;
+
   constructor(
     private _productsService: ProductsService,
     private _activatedRoute: ActivatedRoute,

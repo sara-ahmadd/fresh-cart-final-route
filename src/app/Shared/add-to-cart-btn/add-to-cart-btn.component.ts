@@ -22,7 +22,6 @@ export class AddToCartBtnComponent {
     this._loader.show();
     this._cartService.addToCart(this.productId).subscribe({
       next: (data) => {
-        console.log(data);
         if (data.status === 'success') {
           this._loader.hide();
           const itemsInCart = data.numOfCartItems;

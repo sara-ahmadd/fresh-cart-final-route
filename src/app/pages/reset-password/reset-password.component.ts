@@ -36,7 +36,6 @@ export class ResetPasswordComponent {
             this.isLoading = false;
             this._router.navigate(['/login']);
           }
-          console.log(data);
         },
         error: (err) => {
           console.log(err);

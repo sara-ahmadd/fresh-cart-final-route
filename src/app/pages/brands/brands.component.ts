@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { BrandsService } from 'src/app/services/brands.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
@@ -12,6 +13,7 @@ export class BrandsComponent implements OnInit {
   errorMsg: string = '';
   brandName: string = '';
   brandImg: string = '';
+
   constructor(
     private _brandService: BrandsService,
     private _loader: LoaderService
@@ -27,7 +29,6 @@ export class BrandsComponent implements OnInit {
         this._loader.hide();
         if (data && data.data) {
           this.brands = data.data;
-          console.log(data);
         }
       },
       error: (err) => {
@@ -35,7 +36,6 @@ export class BrandsComponent implements OnInit {
         if (err) {
           this.errorMsg = err.error.message;
         }
-        console.log(err);
       },
     });
   }
@@ -45,11 +45,9 @@ export class BrandsComponent implements OnInit {
         this._loader.hide();
         this.brandName = data.data.name;
         this.brandImg = data.data.image;
-        console.log(data);
       },
       error: (err) => {
         this._loader.hide();
-        console.log(err);
       },
     });
   }

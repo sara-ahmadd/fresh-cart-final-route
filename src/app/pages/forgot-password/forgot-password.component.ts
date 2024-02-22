@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ForgotPasswordComponent {
   errorMsg!: string;
   loader: boolean = false;
+
   forgotPassword: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
   });
@@ -25,7 +27,6 @@ export class ForgotPasswordComponent {
           if (data.statusMsg == 'success') {
             this._router.navigate(['/verifyCode']);
           }
-          console.log(data);
         },
         error: (err) => {
           this.loader = false;

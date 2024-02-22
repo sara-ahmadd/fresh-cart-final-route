@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/interfaces/category';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -14,6 +14,7 @@ export class CategoriesComponent implements OnInit {
   subCategoriesArray: any[] = [];
   subCategoryName: string = '';
   categories: Category[] = [];
+
   constructor(
     private _categories: CategoriesService,
     private _subCatService: SubcategoriesService,
@@ -32,7 +33,6 @@ export class CategoriesComponent implements OnInit {
           if (data) {
             this.subCategoryName = categoryName;
             this.subCategoriesArray = data.data;
-            console.log(data);
           }
         },
         error: (err) => {
@@ -49,7 +49,6 @@ export class CategoriesComponent implements OnInit {
       next: (data) => {
         this._loader.hide();
         this.categories = data.data;
-        console.log(data);
       },
       error: (err) => {
         this._loader.hide();

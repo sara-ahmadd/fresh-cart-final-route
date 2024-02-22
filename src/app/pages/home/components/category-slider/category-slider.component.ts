@@ -42,10 +42,9 @@ export class CategorySliderComponent implements OnInit {
     this._categoriesService.getAllCategories().subscribe({
       next: (data) => {
         this.allCategories = data.data;
-        // console.log(this.allCategories);
       },
       error: (err) => {
-        // console.log(err);
+        console.log(err);
       },
     });
   }

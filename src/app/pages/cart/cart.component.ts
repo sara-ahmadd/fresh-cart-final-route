@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/cart.service';
 import { LoaderService } from 'src/app/services/loader.service';
@@ -29,12 +30,10 @@ export class CartComponent implements OnInit {
           this.cartItems = data.data.products;
           this.totalPrice = data.data.totalCartPrice;
           this._cartService.setCartItemsCount(data.numOfCartItems);
-          console.log(data);
         }
       },
       error: (err) => {
         this._loader.hide();
-        console.log(err);
       },
     });
   }
@@ -75,8 +74,6 @@ export class CartComponent implements OnInit {
           this._cartService.setCartItemsCount(data.numOfCartItems);
           this.cartItems = data.data.products;
           this.totalPrice = data.data.totalCartPrice;
-
-          console.log(data);
         }
       },
       error: (err) => {
@@ -96,7 +93,6 @@ export class CartComponent implements OnInit {
           this.cartItems = [];
           this.totalPrice = 0;
         }
-        console.log(data);
       },
       error: (err) => {
         this._loader.hide();

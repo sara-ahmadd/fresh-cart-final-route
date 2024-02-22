@@ -26,15 +26,7 @@ export class LoginComponent {
     this.showPassword = !this.showPassword;
   }
   allControlsTouched(form: FormGroup) {
-    this.loginForm.markAllAsTouched();
-    //==> this function also  mark all controls and their descendant controls as touched
-    // Object.values(form.controls).forEach((control: any) => {
-    //   control.markAsTouched();
-
-    //   if (control.controls) {
-    //     this.allControlsTouched(control);
-    //   }
-    // });
+    form.markAllAsTouched();
   }
 
   login(form: FormGroup) {
@@ -51,12 +43,11 @@ export class LoginComponent {
             this._authService.setUserToken();
             this._router.navigate(['/home']);
           }
-          console.log(data);
         },
         error: (error) => {
           this.isLoading = false;
           this.loginError = error.error.message;
-          // console.log(error);
+          console.log(error);
         },
       });
     }

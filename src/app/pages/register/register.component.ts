@@ -14,7 +14,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  // properties
   showPassword: boolean = false;
   showRePassword: boolean = false;
   isLoading: boolean = false;
@@ -45,7 +44,6 @@ export class RegisterComponent {
     }
   );
 
-  // methods
   constructor(private _authService: AuthService, private _router: Router) {}
   passwordValidator(
     control: AbstractControl
@@ -80,12 +78,10 @@ export class RegisterComponent {
         next: (data) => {
           this.isLoading = false;
           this._router.navigate(['/login']);
-          // console.log(data);
         },
         error: (error) => {
           this.isLoading = false;
           this.registerError = error.error.message;
-          // console.log(error);
         },
       });
     }
