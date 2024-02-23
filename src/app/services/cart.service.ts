@@ -11,28 +11,16 @@ export class CartService {
   totalCartItems: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   constructor(private _httpClient: HttpClient) {}
   addToCart(id: string): Observable<any> {
-    return this._httpClient.post(
-      `${baseUrl}/api/v1/cart`,
-      {
-        productId: id,
-      },
-      {
-        headers: {
-          token: this.userToken,
-        },
-      }
-    );
+    return this._httpClient.post(`${baseUrl}/api/v1/cart`, {
+      productId: id,
+    });
   }
   setCartItemsCount(num: number) {
     this.totalCartItems.next(num);
   }
 
   getLoggedUserCart(): Observable<any> {
-    return this._httpClient.get(`${baseUrl}/api/v1/cart`, {
-      headers: {
-        token: this.userToken,
-      },
-    });
+    return this._httpClient.get(`${baseUrl}/api/v1/cart`);
   }
   removeItemFromCart(id: string): Observable<any> {
     return this._httpClient.delete(`${baseUrl}/api/v1/cart/${id}`, {
@@ -42,22 +30,12 @@ export class CartService {
     });
   }
   updateCartItemCount(count: number, id: string): Observable<any> {
-    return this._httpClient.put(
-      `${baseUrl}/api/v1/cart/${id}`,
-      {
-        count: `${count}`,
-      },
-      {
-        headers: {
-          token: this.userToken,
-        },
-      }
-    );
+    return this._httpClient.put(`${baseUrl}/api/v1/cart/${id}`, {
+      count: `${count}`,
+    });
   }
 
   clearCart(): Observable<any> {
-    return this._httpClient.delete(`${baseUrl}/api/v1/cart`, {
-      headers: { token: this.userToken },
-    });
+    return this._httpClient.delete(`${baseUrl}/api/v1/cart`);
   }
 }

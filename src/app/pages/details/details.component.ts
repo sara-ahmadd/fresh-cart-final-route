@@ -1,12 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/products.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { WishListService } from 'src/app/services/wish-list.service';
-import { LoaderService } from 'src/app/services/loader.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -21,7 +18,10 @@ export class DetailsComponent implements OnInit {
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: [
+      '<i class="fas fa-chevron-left"></i>',
+      '<i class="fas fa-chevron-right"></i>',
+    ],
     autoplay: true,
     autoplaySpeed: 700,
     autoplayTimeout: 100,
@@ -40,8 +40,7 @@ export class DetailsComponent implements OnInit {
   constructor(
     private _productsService: ProductsService,
     private _activatedRoute: ActivatedRoute,
-    private _wishList: WishListService,
-    private _loader: LoaderService
+    private _wishList: WishListService
   ) {}
 
   ngOnInit(): void {
@@ -49,12 +48,9 @@ export class DetailsComponent implements OnInit {
     this.checkWishList();
   }
   getProduct(id: string) {
-    this._loader.show();
     this._productsService.getSingleProduct(id).subscribe({
       next: (data) => {
-        this._loader.hide();
         this.productDetails = data.data;
-        // console.log(this.productDetails);
       },
       error: (err) => {
         console.log(err);

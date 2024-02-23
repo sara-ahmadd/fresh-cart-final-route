@@ -19,23 +19,11 @@ export class WishListService {
     });
   }
   addToWishList(prodId: string): Observable<any> {
-    return this._httpClient.post(
-      `${baseUrl}/api/v1/wishlist`,
-      {
-        productId: prodId,
-      },
-      {
-        headers: {
-          token: this.userToken,
-        },
-      }
-    );
+    return this._httpClient.post(`${baseUrl}/api/v1/wishlist`, {
+      productId: prodId,
+    });
   }
   removeItem(prodId: string): Observable<any> {
-    return this._httpClient.delete(`${baseUrl}/api/v1/wishlist/${prodId}`, {
-      headers: {
-        token: this.userToken,
-      },
-    });
+    return this._httpClient.delete(`${baseUrl}/api/v1/wishlist/${prodId}`);
   }
 }

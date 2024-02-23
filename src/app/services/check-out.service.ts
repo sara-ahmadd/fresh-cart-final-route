@@ -23,11 +23,6 @@ export class CheckOutService {
       `${baseUrl}/api/v1/orders/checkout-session/${cartId}?url=${this.myDomainName}`,
       {
         shippingAddress: detailsObject,
-      },
-      {
-        headers: {
-          token: this.userToken,
-        },
       }
     );
   }

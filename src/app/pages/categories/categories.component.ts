@@ -1,8 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/interfaces/category';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { LoaderService } from 'src/app/services/loader.service';
 import { SubcategoriesService } from 'src/app/services/subcategories.service';
 
 @Component({
@@ -17,8 +15,7 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private _categories: CategoriesService,
-    private _subCatService: SubcategoriesService,
-    private _loader: LoaderService
+    private _subCatService: SubcategoriesService
   ) {}
 
   ngOnInit(): void {
@@ -26,17 +23,14 @@ export class CategoriesComponent implements OnInit {
   }
   openModal(id: string, categoryName: string) {
     if (id && id.length > 0) {
-      this._loader.show();
       this._subCatService.getSubCategoriesOfSpecificCat(id).subscribe({
         next: (data) => {
-          this._loader.hide();
           if (data) {
             this.subCategoryName = categoryName;
             this.subCategoriesArray = data.data;
           }
         },
         error: (err) => {
-          this._loader.hide();
           console.log(err);
         },
       });
@@ -44,14 +38,11 @@ export class CategoriesComponent implements OnInit {
   }
 
   getCategories() {
-    this._loader.show();
     this._categories.getAllCategories().subscribe({
       next: (data) => {
-        this._loader.hide();
         this.categories = data.data;
       },
       error: (err) => {
-        this._loader.hide();
         console.log(err);
       },
     });

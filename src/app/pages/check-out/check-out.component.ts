@@ -1,9 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { CheckOutService } from 'src/app/services/check-out.service';
-import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-check-out',
@@ -27,7 +25,6 @@ export class CheckOutComponent implements OnInit {
   });
   constructor(
     private _checkOutService: CheckOutService,
-    private _loader: LoaderService,
     private _cart: CartService
   ) {}
 
@@ -49,17 +46,14 @@ export class CheckOutComponent implements OnInit {
   }
   paymentFunction(form: FormGroup) {
     if (form.valid) {
-      this._loader.show();
       this._checkOutService.checkOutSession(this.cartId, form.value).subscribe({
         next: (data) => {
-          this._loader.hide();
           if (data.status === 'success') {
             window.location = data.session.url;
           }
           console.log(data);
         },
         error: (err) => {
-          this._loader.hide();
           console.log(err);
         },
       });

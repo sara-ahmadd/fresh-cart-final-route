@@ -8,3 +8,6 @@ p {
   align-items: center;
   background-color: var(--main-color-opacity);
 }
+.z-index-555 {
+  z-index: 555;
+}

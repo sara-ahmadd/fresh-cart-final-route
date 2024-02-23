@@ -1,13 +1,6 @@
-import {
-  AfterContentChecked,
-  Component,
-  DoCheck,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+
 import { Product } from 'src/app/interfaces/product';
-import { LoaderService } from 'src/app/services/loader.service';
 import { WishListService } from 'src/app/services/wish-list.service';
 import Swal from 'sweetalert2';
 
@@ -19,19 +12,14 @@ import Swal from 'sweetalert2';
 export class WishListComponent implements OnInit {
   productsArray: Product[] = [];
   productsCount: number = 0;
-  constructor(
-    private _wishListService: WishListService,
-    private _loader: LoaderService
-  ) {}
+  constructor(private _wishListService: WishListService) {}
   ngOnInit(): void {
     this.getProducts();
   }
 
   getProducts() {
-    this._loader.show();
     this._wishListService.getLoggedUserWishList().subscribe({
       next: (data) => {
-        this._loader.hide();
         if (data.status == 'success') {
           this.productsArray = data.data;
           this.productsCount = data.count;

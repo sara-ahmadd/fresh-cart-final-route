@@ -17,7 +17,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ProductsPageComponent } from './pages/products-page/products-page.component';
@@ -31,7 +31,9 @@ import { CheckOutComponent } from './pages/check-out/check-out.component';
 import { LoaderComponent } from './pages/loader/loader.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { SearchPipe } from './pipes/search.pipe';
-import { DatePipe } from './pipes/date.pipe';
+import { TokenInterceptor } from './interceptors/token-interceptor.interceptor';
+import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +62,6 @@ import { DatePipe } from './pipes/date.pipe';
     LoaderComponent,
     OrdersComponent,
     SearchPipe,
-    DatePipe,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +72,22 @@ import { DatePipe } from './pipes/date.pipe';
     FormsModule,
     CarouselModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: DATE_PIPE_DEFAULT_OPTIONS,
+      useValue: { dateFormat: 'medium' },
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -30,17 +30,14 @@ export class RegisterComponent {
         Validators.required,
         Validators.pattern(/^[A-Z][a-z0-9]{6,8}$/),
       ]),
-      rePassword: new FormControl(null, [
-        Validators.required,
-        Validators.pattern(/^[A-Z][a-z0-9]{6,8}$/),
-      ]),
+      rePassword: new FormControl(null, [Validators.required]),
       phone: new FormControl(null, [
         Validators.required,
         Validators.pattern(/^01[1250][0-9]{8}$/),
       ]),
     },
     {
-      validators: [this.passwordValidator],
+      validators: this.passwordValidator,
     }
   );
 
@@ -52,6 +49,7 @@ export class RegisterComponent {
     const rePassword = control.get('rePassword');
 
     if (password && rePassword && password.value !== rePassword.value) {
+      control.setErrors({ 'Passwords mismatch': true });
       return { 'Passwords mismatch': true };
     }
     return null;
