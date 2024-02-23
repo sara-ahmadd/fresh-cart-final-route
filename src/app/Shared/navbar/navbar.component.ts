@@ -18,7 +18,7 @@ export class NavbarComponent {
     private _cartService: CartService
   ) {
     this._authService.userToken.subscribe((value) => {
-      if (value?.length > 0 && value !== 'null') {
+      if (value && value.length > 0 && value !== 'null') {
         this.isLoggedIn = true;
       } else {
         this.isLoggedIn = false;

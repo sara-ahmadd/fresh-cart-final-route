@@ -67,4 +67,12 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <a
+      routerLink="/allorders"
+      *ngIf="cartItems.length !== 0"
+      class="col-md-4 btn bg-main text-white fs-5 d-block ms-auto my-4"
+      >Show all your previous orders</a
+    >
+  </div>
 </div>

@@ -7,7 +7,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { BrandsComponent } from './pages/brands/brands.component';
-import { authGuard } from 'src/auth.guard';
+import { authGuard } from 'src/app/guards/auth.guard';
 import { ProductsPageComponent } from './pages/products-page/products-page.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
