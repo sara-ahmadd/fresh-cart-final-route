@@ -7,7 +7,7 @@ import { baseUrl } from '../baseUrl';
   providedIn: 'root',
 })
 export class CheckOutService {
-  myDomainName: string = 'http://localhost:4200';
+  myDomainName: string = 'https://fresh-cart-final-route.vercel.app';
   userToken: string = localStorage.getItem('userToken') ?? '';
   constructor(private _httpClient: HttpClient) {}
 
