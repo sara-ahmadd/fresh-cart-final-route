@@ -9,10 +9,7 @@
       <div class="col-md-8">
         <p class="text-main fw-bold fs-5">
           CreatedAt :
-          <span class="text-black"
-            >{{ order.createdAt | date }}
-            <small class="text-muted">(month/day/year)</small></span
-          >
+          <span class="text-black">{{ order.createdAt | date }} </span>
         </p>
         <p class="text-main fw-bold fs-5" *ngIf="order.isPaid">Paid ✔</p>
         <p class="text-main fw-bold fs-5" *ngIf="!order.isPaid">Not Paid</p>
