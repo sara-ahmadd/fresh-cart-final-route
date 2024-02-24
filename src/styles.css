@@ -46,6 +46,12 @@ a {
 body {
   font-family: var(--font-family) !important;
 }
+.z-index-10 {
+  z-index: 10;
+}
+.z-index-20 {
+  z-index: 20;
+}
 .shadow-main {
   box-shadow: var(--shadow);
 }
