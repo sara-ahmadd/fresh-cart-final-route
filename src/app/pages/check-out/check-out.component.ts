@@ -36,7 +36,6 @@ export class CheckOutComponent implements OnInit {
       next: (data) => {
         if (data.status === 'success') {
           this.cartId = data.data._id;
-          localStorage.setItem('userId', data.data.cartOwner);
         }
       },
       error: (err) => {

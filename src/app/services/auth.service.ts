@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { baseUrl } from '../baseUrl';
 import { FormGroup } from '@angular/forms';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,13 @@ export class AuthService {
     const token = JSON.stringify(localStorage.getItem('userToken')); //make it 'null' if it is null.
     this.userToken.next(token);
   }
+  saveUserData() {
+    const encodedToken = localStorage.getItem('userToken') ?? '';
+    const decodedToken: any = jwtDecode(encodedToken);
+    console.log(decodedToken);
 
+    localStorage.setItem('userId', decodedToken?.id);
+  }
   signUp(user: User): Observable<any> {
     return this._httpClient.post(`${baseUrl}/api/v1/auth/signup`, user);
   }

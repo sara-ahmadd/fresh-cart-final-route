@@ -41,6 +41,7 @@ export class LoginComponent {
           if (data.message == 'success') {
             localStorage.setItem('userToken', data.token);
             this._authService.setUserToken();
+            this._authService.saveUserData();
             this._router.navigate(['/home']);
           }
         },
